@@ -28,53 +28,55 @@
 
 {% endblock %}
 {% block content %}
-<div class="categories container">
-  <div class="heading">Categories</div>
-<!--  <div class="category col-lg-3 col-lg-offset-3 col-md-4 col-sm-4 col-xs-6"></div>
-  <div class="category col-lg-3 col-md-4 col-sm-4 col-xs-6"></div>
-  <div class="category col-lg-3 col-lg-offset-3 col-md-4 col-sm-4 col-xs-6" ></div>
-  <div class="category col-lg-3 col-md-4 col-sm-4 col-xs-6"></div>
-  <div class="category col-lg-3 col-lg-offset-3 col-md-4 col-sm-4 col-xs-6" ></div>
-  <div class="category col-lg-3 col-md-4 col-sm-4 col-xs-6"></div>-->
-  <div class="row box">
-  {% if categories %}
-    {% for category in categories %}
-      <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12" style="padding-top:60px;">
-          <a href="{% url 'category' category.category_name %}" target="_blank"> <img src={{category.image.url}} height='250px' width='250px'></a>
-          <div style="text-align:center;padding-top:10px;">
-          <!-- {% with ''|center:category.rating as range %}
-           {% for _ in range %}
-          <span>&#9733</span>
-
+    <div class="categories container">
+      <div class="heading">Categories</div>
+    <!--  <div class="category col-lg-3 col-lg-offset-3 col-md-4 col-sm-4 col-xs-6"></div>
+      <div class="category col-lg-3 col-md-4 col-sm-4 col-xs-6"></div>
+      <div class="category col-lg-3 col-lg-offset-3 col-md-4 col-sm-4 col-xs-6" ></div>
+      <div class="category col-lg-3 col-md-4 col-sm-4 col-xs-6"></div>
+      <div class="category col-lg-3 col-lg-offset-3 col-md-4 col-sm-4 col-xs-6" ></div>
+      <div class="category col-lg-3 col-md-4 col-sm-4 col-xs-6"></div>-->
+      <div class="row box">
+        {% if categories %}
+        {% for category in categories %}
+          <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12" style="padding-top:60px;">
+              <a href="{% url 'category' category.category_name %}" target="_blank"> <img src={{category.image.url}} height='250px' width='250px'></a>
+              <div style="text-align:center;padding-top:10px;">
+              <!-- {% with ''|center:category.rating as range %}
+               {% for _ in range %}
+              <span>&#9733</span>
+    
+              {% endfor %}
+            {% endwith %} -->
+            {% ratings category 10 10 True %}
+          </div>
+                <div class="desc" style="padding-top:10px; width:250px;"><p>{{category.description}}</p></div>
+    
+          </div>
           {% endfor %}
-        {% endwith %} -->
-        {% ratings category 10 10 True %}
-      </div>
-            <div class="desc" style="padding-top:10px; width:250px;"><p>{{category.description}}</p></div>
-
-      </div>
-      {% endfor %}
-  {% else %}
-  <div class="sub-heading">There are no categories</div>
-  {% endif %}
-</div>
-<div class="enroll container">
-  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    <img src="{% static '/static_root/images.png' %}">
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    <div class="heading" style="padding-top:0px;margin-top:0px">
-      Get Started Now!</div>
-      <div class="sub-heading">Add courses to your profile and manage progress</div>
-      {% if user.is_authenticated %}
-      <div><a href="{% url 'enroll' %}" class="btn btn-default" style="color:white;background:#85428a;display:block;margin:10px auto;
-        width:30%;">Enroll</a>
       {% else %}
-      <div><a href="{% url 'login' %}" class="btn btn-default" style="color:white;background:#85428a;display:block;margin:10px auto;
-        width:30%;">Enroll</a>
-        {% endif %}
-  </div>
-</div>
-</div>
-</div>
+      <div class="sub-heading">There are no categories</div>
+      {% endif %}
+      </div>
+        <div class="enroll container">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <img src="{% static '/static_root/images.png' %}">
+          </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="heading" style="padding-top:0px;margin-top:0px">
+                  Get Started Now!
+                </div>
+                  <div class="sub-heading">Add courses to your profile and manage progress</div>
+                  {% if user.is_authenticated %}
+                      <div><a href="{% url 'enroll' %}" class="btn btn-default" style="color:white;background:#85428a;display:block;margin:10px auto;
+                        width:30%;">Enroll</a>
+                      {% else %}
+                          <div><a href="{% url 'login' %}" class="btn btn-default" style="color:white;background:#85428a;display:block;margin:10px auto;
+                            width:30%;">Enroll</a>
+                            {% endif %}
+                         </div>
+                      </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
