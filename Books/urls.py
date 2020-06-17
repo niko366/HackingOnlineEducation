@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from newsletter import views
 from django.contrib.auth import views as auth_views
-
+app_name='ratings'
 urlpatterns = [
     url(r'^$',views.home, name='home'),
     url(r'^admin/', admin.site.urls),
@@ -28,12 +28,12 @@ urlpatterns = [
     url(r'^register/',views.register, name='register'),
     url(r'^accounts/profile/',views.profile, name='profile'),
     url(r'^courses/rating/(?P<category_name>.+)/$',views.rating_courses, name='rating_courses'),
-    url(r'^login/',auth_views.login, name='login'),
-    url(r'^accounts/logout/',auth_views.logout, name='logout'),
+    url(r'^login/',auth_views.auth_login, name='login'),
+    url(r'^accounts/logout/',auth_views.auth_logout, name='logout'),
     url(r'^explore/',views.explore, name='explore'),
     url(r'^courses/(?P<category_name>.+)/$',views.category, name='category'),
     url(r'^challenges/',views.challenges, name='challenges'),
-    url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
+    url(r'^ratings/', include('star_ratings.urls', namespace='ratings')),
     url(r'^search/',views.search, name='search'),
     url(r'^articles/',views.articles, name='articles'),
     url(r'^accounts/enroll/',views.enroll, name='enroll'),
